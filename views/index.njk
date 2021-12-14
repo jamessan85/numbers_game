@@ -64,4 +64,15 @@ function clicked(index) {
     animateCard(card, value)
 }
 
+function provideHint() {
+    const cards = [...document.querySelectorAll(`.card-block-small`)]
+    const card = cards.find(card => Number(card.children[0].innerText) === Number(mainNumber))
+    card.classList.add('shake')
+    setTimeout(() => {
+        card.classList.remove('shake')
+    }, 500 )
+}
+
+setInterval(provideHint, 1000 * 10)
+
 </script>
