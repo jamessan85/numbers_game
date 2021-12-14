@@ -46,7 +46,7 @@ const getRandomNumber = () => {
 }
 
 const generateNumberArray = () => {
-  const randomNumbers = Array.from([, , , , , ,], getRandomNumber)
+  const randomNumbers = Array.from([, , , , ], getRandomNumber)
   // remove duplicates
   if (new Set(randomNumbers).size !== randomNumbers.length) {
     return generateNumberArray()
