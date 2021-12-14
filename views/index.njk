@@ -1,0 +1,63 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+{% block css %}
+<link rel="stylesheet" href="main.css" />
+<script src="node_modules/nhsuk-frontend/dist/nhsuk.min.js" defer></script>
+{% endblock %}
+
+{% block body %}
+<body>
+    {% include "header.njk" %}
+    <main>
+        <div class="card-block">
+            <h1 id="main-number">{{ main.number }}</h1>
+            <h3>{{ main.string }}</h3>
+        </div>
+        <button class="nhsuk-button">Save and Continue </button>
+        <div class="row">
+            {% for option in options %}
+            
+            <div class="card-block-small" id="card-{{loop.index}}" onclick="clicked({{loop.index}})" data-value={{option.number}}>
+                <h1>{{ option.number }}</h1>
+                <h3>{{ option.string }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+{% endblock %}
+
+<script>
+
+const cards = document.querySelectorAll(".card-block-small")
+const mainNumber = document.querySelector("#main-number").innerText
+
+function animateCard(element, selectedValue) {
+        const msg = new SpeechSynthesisUtterance();
+        if (Number(selectedValue) !== Number(mainNumber)) {
+            element.classList.add('card-block-shake')
+            msg.text = "Try Again!";
+            window.speechSynthesis.speak(msg);
+            setTimeout(() => {
+                element.classList.remove('card-block-shake')
+            }, 500 )
+        } else {
+            element.classList.add('card-block-success')
+            element.classList.add('card-block-shake')
+            msg.text = selectedValue;
+            window.speechSynthesis.speak(msg);
+            setTimeout(() => {
+                location.reload()
+            }, 700 )
+        }
+}
+
+
+function clicked(index) {
+    const card = document.querySelector(`#card-${index}`)
+    const value = card.getAttribute("data-value")
+    animateCard(card, value)
+}
+
+</script>
