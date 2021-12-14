@@ -2,6 +2,8 @@ var express = require('express');
 const fetch = require("node-fetch")
 var router = express.Router();
 
+const TIME = 10 * 60 * 1000
+
 getNumberWord = (number) => {
   let word = ""
   switch (number) {
@@ -63,7 +65,7 @@ async function pingSelf() {
   await fetch("https://ollie-numbers-game.herokuapp.com/health")
 }
 
-setInterval(pingSelf, 10000)
+setInterval(pingSelf, TIME)
 
 
 /* GET home page. */
