@@ -1,20 +1,24 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-{% block css %}
-<link rel="stylesheet" href="main.css" />
-<script src="node_modules/nhsuk-frontend/dist/nhsuk.min.js" defer></script>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css" />
+    <title>Numbers Game</title>
+</head>
+
 
 {% block body %}
 <body>
-    {% include "header.njk" %}
     <main>
         <div class="card-block">
             <h1 id="main-number">{{ main.number }}</h1>
             <h3>{{ main.string }}</h3>
         </div>
-        <button class="nhsuk-button">Save and Continue </button>
         <div class="row">
             {% for option in options %}
             
