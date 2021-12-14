@@ -1,4 +1,5 @@
 var express = require('express');
+const fetch = require("node-fetch")
 var router = express.Router();
 
 getNumberWord = (number) => {
@@ -58,6 +59,12 @@ const generateNumberArray = () => {
     })
 }
 
+async function pingSelf() {
+  await fetch("https://ollie-numbers-game.herokuapp.com/health")
+}
+
+setInterval(pingSelf, 10000)
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -66,6 +73,10 @@ router.get('/', function(req, res, next) {
       options,
       main: options[Math.floor(Math.random() * options.length)]
   });
+});
+
+router.get('/health', function(req, res, next) {
+  res.sendStatus(200)
 });
 
 module.exports = router;
